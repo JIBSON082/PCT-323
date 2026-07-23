@@ -1,1 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PCT 323 — Emulsions, Ointments & Suppositories (COMPLETE)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,480;0,9..144,560;0,9..144,650;1,9..144,480&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#050912;
+    --bg-1:#0A1230;
+    --bg-2:#101B45;
+    --bg-3:#16225A;
+    --paper:#F6F1E7;
+    --paper-dim:#EAE2CE;
+    --ink:#0B1220;
+    --ink-soft:#57647A;
+    --gold:#E3B24D;
+    --gold-dim:#B98A2E;
+    --cyan:#3FD1D9;
+    --cyan-dim:#1D8A91;
+    --coral:#FF6B52;
+    --green:#4FD189;
+    --violet:#9B87F5;
+    --text-0:#F4F1EA;
+    --text-1:#AFC0DA;
+    --text-2:#728098;
+    --line:rgba(244,241,234,0.12);
+    --accent:var(--cyan);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(ellipse 1100px 760px at 12% -8%, rgba(63,209,217,0.13), transparent 58%),
+      radial-gradient(ellipse 900px 700px at 108% 6%, rgba(227,178,77,0.10), transparent 55%),
+      radial-gradient(ellipse 1300px 900px at 50% 115%, rgba(22,34,90,0.65), transparent 60%),
+      linear-gradient(180deg, var(--bg-0) 0%, var(--bg-1) 42%, var(--bg-1) 100%);
+    color:var(--text-0);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--cyan); color:var(--bg-0);}
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  button{font-family:'Inter',sans-serif; cursor:pointer; border:none; background:none; color:inherit;}
+  button:focus-visible, input:focus-visible, a:focus-visible, [tabindex]:focus-visible{outline:2px solid var(--cyan); outline-offset:3px; border-radius:4px;}
+  a{color:inherit;}
+  svg{display:block;}
 
+  .bg-curve{position:fixed; inset:0; z-index:0; pointer-events:none;}
+  .bg-grid{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(244,241,234,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,241,234,0.03) 1px, transparent 1px);
+    background-size:46px 46px;
+    mask-image:radial-gradient(ellipse 900px 700px at 50% 0%, #000 0%, transparent 70%);
+  }
+  #curveDraw{
+    stroke-dasharray:2200;
+    stroke-dashoffset:2200;
+    animation:drawPath 2.6s cubic-bezier(.22,.61,.36,1) .2s forwards;
+  }
+  #curveDrawFaint{
+    stroke-dasharray:2200;
+    stroke-dashoffset:2200;
+    animation:drawPath 3.1s cubic-bezier(.22,.61,.36,1) .5s forwards;
+  }
+  @keyframes drawPath{ to{ stroke-dashoffset:0; } }
+
+  .app{position:relative; z-index:1; min-height:100vh; display:flex; flex-direction:column; align-items:center; padding:32px 20px 64px;}
+  .wrap{width:100%; max-width:780px;}
+
+  .topbar{
+    display:flex; justify-content:space-between; align-items:center;
+    width:100%; max-width:780px; margin-bottom:30px;
+    animation:fadeSlideUp .6s cubic-bezier(.22,.61,.36,1) both;
+  }
+  .brand{display:flex; align-items:center; gap:10px;}
+  .brand-mono{
+    font-family:'JetBrains Mono',monospace; font-size:0.66rem; letter-spacing:0.16em; color:var(--text-2);
+    padding:5px 9px; border:1px solid var(--line); border-radius:6px;
+  }
+  .brand-word{font-family:'Fraunces',serif; font-weight:560; font-style:italic; font-size:1.3rem; letter-spacing:-0.01em;}
+  .brand-word .dot{color:var(--gold);}
+  .user-chip{
+    display:flex; align-items:center; gap:8px;
+    font-size:0.8rem; color:var(--text-1);
+    background:rgba(244,241,234,0.05); border:1px solid var(--line);
+    backdrop-filter:blur(10px);
+    padding:7px 14px 7px 10px; border-radius:100px;
+  }
+  .user-chip .dot-ico{width:7px; height:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 8px 1px var(--cyan);}
+  .user-chip strong{color:var(--text-0); font-weight:600;}
+
+  .gate{
+    display:flex; flex-direction:column; align-items:center; text-align:center;
+    min-height:82vh; justify-content:center; width:100%; max-width:560px; margin:0 auto;
+  }
+  .gate-eyebrow{
+    font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--cyan);
+    margin-bottom:20px; opacity:0; animation:fadeSlideUp .7s cubic-bezier(.22,.61,.36,1) .1s both;
+  }
+  .gate h1{
+    font-size:clamp(2.2rem,6vw,3rem); font-weight:560; line-height:1.06; letter-spacing:-0.02em;
+    margin-bottom:16px; opacity:0; animation:fadeSlideUp .7s cubic-bezier(.22,.61,.36,1) .22s both;
+  }
+  .gate h1 em{font-style:italic; color:var(--gold);}
+  .gate p.lead{
+    color:var(--text-1); font-size:1.02rem; line-height:1.65; max-width:440px; margin-bottom:38px;
+    opacity:0; animation:fadeSlideUp .7s cubic-bezier(.22,.61,.36,1) .34s both;
+  }
+  .name-form{width:100%; max-width:380px; display:flex; flex-direction:column; gap:14px;
+    opacity:0; animation:fadeSlideUp .7s cubic-bezier(.22,.61,.36,1) .46s both;}
+  .name-form input{
+    width:100%; padding:17px 18px; border-radius:12px;
+    background:rgba(244,241,234,0.06); border:1.5px solid var(--line);
+    color:var(--text-0); font-size:1.05rem; font-family:'Fraunces',serif;
+    transition:border-color .2s, background .2s, box-shadow .2s;
+  }
+  .name-form input::placeholder{color:rgba(244,241,234,0.32); font-family:'Inter',sans-serif; font-size:0.95rem;}
+  .name-form input:focus{border-color:var(--cyan); background:rgba(244,241,234,0.09); box-shadow:0 0 0 4px rgba(63,209,217,0.12);}
+
+  .btn{
+    padding:16px 24px; border-radius:12px; font-weight:600; font-size:0.95rem;
+    transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease, opacity .15s ease, background .2s;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn:active{transform:translateY(0) scale(.98);}
+  .btn-primary{background:linear-gradient(135deg, var(--cyan), var(--cyan-dim)); color:var(--bg-0);}
+  .btn-primary:hover{box-shadow:0 10px 30px -8px rgba(63,209,217,0.55);}
+  .btn-primary:disabled{opacity:0.3; transform:none; box-shadow:none; cursor:not-allowed;}
+  .btn-gold{background:linear-gradient(135deg, var(--gold), var(--gold-dim)); color:var(--bg-0);}
+  .btn-gold:hover{box-shadow:0 10px 30px -8px rgba(227,178,77,0.55);}
+  .btn-gold:disabled{opacity:0.28; transform:none; box-shadow:none; cursor:not-allowed;}
+  .btn-ghost{background:rgba(244,241,234,0.04); color:var(--text-0); border:1.5px solid var(--line);}
+  .btn-ghost:hover{background:rgba(244,241,234,0.09); border-color:rgba(244,241,234,0.28);}
+  .btn-ghost:disabled{opacity:0.25; transform:none; cursor:not-allowed;}
+  .btn-sm{padding:10px 17px; font-size:0.83rem; border-radius:9px;}
+
+  .gate-hint{font-size:0.76rem; color:var(--text-2); margin-top:16px;
+    opacity:0; animation:fadeSlideUp .7s cubic-bezier(.22,.61,.36,1) .56s both;}
+
+  @keyframes fadeSlideUp{ from{opacity:0; transform:translateY(16px);} to{opacity:1; transform:translateY(0);} }
+
+  .home-head{margin-bottom:30px; animation:fadeSlideUp .6s cubic-bezier(.22,.61,.36,1) .05s both;}
+  .home-head .eyebrow{font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.16em; text-transform:uppercase; color:var(--cyan); margin-bottom:10px;}
+  .home-head h1{font-size:1.95rem; font-weight:560; letter-spacing:-0.015em; margin-bottom:9px;}
+  .home-head p{color:var(--text-1); font-size:0.96rem; line-height:1.55; max-width:560px;}
+
+  .overall-bar{
+    width:100%; height:7px; border-radius:100px; background:rgba(244,241,234,0.08);
+    margin:24px 0 6px; overflow:hidden;
+  }
+  .overall-bar-fill{height:100%; background:linear-gradient(90deg, var(--cyan), var(--gold)); border-radius:100px; transition:width .6s cubic-bezier(.22,.61,.36,1); box-shadow:0 0 12px 0 rgba(63,209,217,0.5);}
+  .overall-label{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--text-2); margin-bottom:28px; letter-spacing:0.02em;}
+
+  .topic-list{display:flex; flex-direction:column; gap:16px;}
+  .topic-card{
+    background:var(--paper); color:var(--ink); border-radius:16px; padding:24px 26px;
+    position:relative; overflow:hidden; opacity:0;
+    animation:fadeSlideUp .55s cubic-bezier(.22,.61,.36,1) forwards;
+    box-shadow:0 18px 40px -22px rgba(0,0,0,0.55);
+    transition:transform .25s cubic-bezier(.22,.61,.36,1), box-shadow .25s ease;
+  }
+  .topic-card:hover{transform:translateY(-3px); box-shadow:0 24px 50px -20px rgba(0,0,0,0.6);}
+  .topic-card::before{
+    content:''; position:absolute; left:0; top:0; bottom:0; width:4px; background:var(--tcolor, var(--cyan));
+  }
+  .topic-top{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; margin-bottom:16px;}
+  .topic-num{
+    font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--tcolor,var(--ink-soft)); letter-spacing:0.06em; font-weight:600;
+  }
+  .topic-title{font-family:'Fraunces',serif; font-weight:600; font-size:1.26rem; letter-spacing:-0.01em; margin-top:3px;}
+  .topic-desc{font-size:0.84rem; color:#5b6670; line-height:1.5; margin-top:7px; max-width:480px;}
+
+  .mode-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px;}
+  .mode-btn{
+    flex:1; min-width:160px; text-align:left; padding:14px 15px; border-radius:11px;
+    background:rgba(11,18,32,0.035); border:1.5px solid rgba(11,18,32,0.09);
+    display:flex; flex-direction:column; gap:7px; transition:background .18s, border-color .18s, transform .18s;
+  }
+  .mode-btn:hover{background:rgba(11,18,32,0.075); border-color:rgba(11,18,32,0.22); transform:translateY(-1px);}
+  .mode-btn .mtop{display:flex; align-items:center; justify-content:space-between; gap:8px;}
+  .mode-btn .mlabel{font-size:0.82rem; font-weight:600; display:flex; align-items:center; gap:7px;}
+  .mode-btn .mprog{font-size:0.7rem; color:#5b6670; font-family:'JetBrains Mono',monospace;}
+  .mode-badge{
+    font-size:0.63rem; padding:3px 8px; border-radius:100px; font-weight:700; letter-spacing:0.03em;
+  }
+  .badge-done{background:var(--green); color:#0B1220;}
+  .badge-progress{background:var(--gold); color:#0B1220;}
+  .badge-new{background:rgba(11,18,32,0.08); color:#5b6670;}
+
+  .back-row{margin-bottom:20px; animation:fadeSlideUp .5s cubic-bezier(.22,.61,.36,1) both;}
+  .quiz-topbar{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; width:100%;
+    animation:fadeSlideUp .5s cubic-bezier(.22,.61,.36,1) .05s both;}
+  .quiz-meta{font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.06em; text-transform:uppercase; color:var(--accent);}
+  .quiz-counter{font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:var(--text-2);}
+
+  .dot-row{display:flex; gap:5px; width:100%; margin-bottom:28px;
+    animation:fadeSlideUp .5s cubic-bezier(.22,.61,.36,1) .1s both;}
+  .pip{flex:1; height:5px; border-radius:100px; background:rgba(244,241,234,0.1); transition:background .3s ease, box-shadow .3s ease;}
+  .pip.filled{background:var(--accent);}
+  .pip.current{background:var(--text-0); box-shadow:0 0 10px 1px rgba(244,241,234,0.5);}
+
+  .qcard-outer{perspective:2200px;}
+  .qcard{
+    background:var(--paper); color:var(--ink); border-radius:20px; padding:38px 34px;
+    min-height:300px; display:flex; flex-direction:column; position:relative;
+    box-shadow:0 24px 60px -22px rgba(0,0,0,0.6);
+    transition:transform .32s cubic-bezier(.22,.61,.36,1), opacity .32s cubic-bezier(.22,.61,.36,1);
+  }
+  .qcard::before{
+    content:''; position:absolute; left:26px; right:26px; top:0; height:3px; border-radius:0 0 4px 4px;
+    background:var(--accent); opacity:.75;
+  }
+  .card-exit-left{transform:translateX(-36px) scale(.97); opacity:0;}
+  .card-exit-right{transform:translateX(36px) scale(.97); opacity:0;}
+  .card-enter-right{transform:translateX(36px) scale(.97); opacity:0; transition:none !important;}
+  .card-enter-left{transform:translateX(-36px) scale(.97); opacity:0; transition:none !important;}
+
+  .qkicker{font-family:'JetBrains Mono',monospace; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--cyan-dim); font-weight:600; margin-bottom:16px;}
+  .qtext{font-family:'Fraunces',serif; font-size:1.4rem; line-height:1.42; font-weight:500; flex:1;}
+
+  .flip-scene{perspective:1800px; margin-top:4px; flex:1; display:flex; cursor:pointer; min-height:190px;}
+  .flip-card{
+    width:100%; position:relative; transform-style:preserve-3d;
+    transition:transform .6s cubic-bezier(.34,1.15,.34,1); min-height:190px;
+  }
+  .flip-card.flipped{transform:rotateY(180deg);}
+  .flip-face{
+    position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .flip-face.back{transform:rotateY(180deg);}
+  .flip-answer-text{font-family:'Fraunces',serif; font-size:1.12rem; line-height:1.62; color:#2b3745; font-weight:400;}
+  .flip-hint{
+    position:absolute; bottom:0; right:2px; color:var(--ink-soft); opacity:0.32;
+    animation:floatPulse 2.6s ease-in-out infinite;
+  }
+  @keyframes floatPulse{ 0%,100%{opacity:0.22; transform:translateY(0) rotate(0deg);} 50%{opacity:0.5; transform:translateY(-2px) rotate(24deg);} }
+  .flip-scene:active .flip-card:not(.flipped){transform:scale(.985);}
+
+  .quiz-nav{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-top:24px;
+    animation:fadeSlideUp .5s cubic-bezier(.22,.61,.36,1) .15s both;}
+  .nav-btn{
+    display:flex; align-items:center; gap:8px; padding:14px 22px; border-radius:12px; font-weight:600; font-size:0.9rem;
+    transition:transform .18s cubic-bezier(.34,1.56,.64,1), box-shadow .2s ease, opacity .15s ease, background .2s;
+  }
+  .nav-btn:hover:not(:disabled){transform:translateY(-2px);}
+  .nav-btn:active:not(:disabled){transform:translateY(0) scale(.98);}
+  .nav-btn:disabled{opacity:0.25; cursor:not-allowed; transform:none;}
+  .nav-prev{background:rgba(244,241,234,0.05); border:1.5px solid var(--line); color:var(--text-0);}
+  .nav-prev:hover:not(:disabled){background:rgba(244,241,234,0.1);}
+  .nav-next{background:linear-gradient(135deg, var(--gold), var(--gold-dim)); color:var(--bg-0);}
+  .nav-next:hover:not(:disabled){box-shadow:0 10px 26px -8px rgba(227,178,77,0.5);}
+
+  .results-card{background:var(--paper); color:var(--ink); border-radius:20px; padding:48px 34px; text-align:center;
+    box-shadow:0 24px 60px -22px rgba(0,0,0,0.6); animation:fadeSlideUp .5s cubic-bezier(.22,.61,.36,1) both;}
+  .results-eyebrow{font-family:'JetBrains Mono',monospace; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--cyan-dim); margin-bottom:22px;}
+  .score-ring-wrap{
+    width:172px; height:172px; border-radius:50%; margin:0 auto 22px; position:relative;
+    display:flex; align-items:center; justify-content:center;
+    background:conic-gradient(var(--gold-dim) 0%, rgba(11,18,32,0.08) 0);
+  }
+  .score-ring-inner{
+    width:140px; height:140px; border-radius:50%; background:var(--paper);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    box-shadow:0 2px 10px rgba(0,0,0,0.08) inset;
+  }
+  .score-pct{font-family:'Fraunces',serif; font-size:2.4rem; font-weight:600;}
+  .score-pct-label{font-family:'JetBrains Mono',monospace; font-size:0.6rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-soft); margin-top:2px;}
+  .results-verdict{font-family:'Fraunces',serif; font-size:1.15rem; font-weight:560; margin-bottom:6px;}
+  .results-sub{color:#5b6670; font-size:0.9rem; margin-bottom:30px;}
+  .results-actions{display:flex; gap:10px; justify-content:center; flex-wrap:wrap;}
+
+  @media (max-width:600px){
+    .gate h1{font-size:2.05rem;}
+    .qcard{padding:28px 22px;}
+    .topic-card{padding:19px;}
+    .mode-row{flex-direction:column;}
+    .nav-btn{padding:13px 16px; flex:1;}
+    .nav-btn span.nb-label{display:inline;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<svg class="bg-curve" viewBox="0 0 1440 900" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+  <path id="curveDraw" d="M -50 130 C 260 150, 390 500, 750 630 S 1250 790, 1550 810" stroke="#3FD1D9" stroke-width="1.4" fill="none" opacity="0.4"/>
+  <path id="curveDrawFaint" d="M -50 70 C 310 100, 510 300, 770 420 S 1200 560, 1550 610" stroke="#E3B24D" stroke-width="1" fill="none" opacity="0.28"/>
+  <circle r="4.2" fill="#3FD1D9" opacity="0.85">
+    <animateMotion dur="9s" begin="2.4s" repeatCount="indefinite" path="M -50 130 C 260 150, 390 500, 750 630 S 1250 790, 1550 810"/>
+  </circle>
+  <circle r="9" fill="#3FD1D9" opacity="0.18">
+    <animateMotion dur="9s" begin="2.4s" repeatCount="indefinite" path="M -50 130 C 260 150, 390 500, 750 630 S 1250 790, 1550 810"/>
+  </circle>
+</svg>
+<div class="bg-grid"></div>
+
+<div class="app" id="app"></div>
+
+<script>
+/* ============================================================
+   DATA — PCT 323: Emulsions, Ointments & Suppositories
+   FULLY COMPREHENSIVE — Covers EVERY slide detail
+   ============================================================ */
+const SECTIONS = [
+  // ========= SECTION 1: EMULSIONS FUNDAMENTALS =========
+  {
+    id:'emulsions',
+    color:'#3FD1D9',
+    num:'01',
+    title:'Emulsions — Fundamentals & Types',
+    desc:'Definition of emulsions, types (o/w, w/o, w/o/w, o/w/o), roles in drug products, theories of emulsification (monomolecular, multimolecular, solid particle).',
+    short:[
+      {q:"What is an emulsion?", a:"A dispersion of two immiscible (or partially miscible) liquids, one of which is distributed uniformly in the form of fine droplets (the dispersed phase) throughout the other (the continuous phase)."},
+      {q:"What are the two types of simple emulsions?", a:"Oil-in-water (o/w) — oil droplets dispersed in water; and Water-in-oil (w/o) — water droplets dispersed in oil."},
+      {q:"What is a w/o/w emulsion?", a:"A water-in-oil-in-water emulsion — a triple emulsion where water is dispersed in oil droplets, which are themselves dispersed in water."},
+      {q:"What is an o/w/o emulsion?", a:"An oil-in-water-in-oil emulsion — the less common reverse analogue where oil is dispersed in water droplets, which are dispersed in oil."},
+      {q:"In a drug product, the emulsion may serve what three roles?", a:"1. The active component itself; 2. An activity-enhancer for a co-administered API (as solvent/stabilizing or penetration/absorption enhancer); 3. Pharmaceutically inactive, providing an elegant vehicle for API formulation."},
+      {q:"What are the three theories of emulsification?", a:"1. Monomolecular adsorption (surface active agents), 2. Multimolecular adsorption and film formation (hydrophilic colloids), 3. Solid particle adsorption (finely divided solids)."},
+      {q:"What is the monomolecular adsorption theory of emulsification?", a:"Surface active agents/amphiphiles reduce interfacial tension because of their adsorption at the oil-water interface to form monomolecular films, reducing surface free energy and providing surface charge for repulsion."},
+      {q:"What is the multimolecular adsorption theory of emulsification?", a:"Hydrated lyophilic colloids form multimolecular films at the interface. They do not cause appreciable lowering of interfacial tension but form strong films that resist coalescence."},
+      {q:"What is the solid particle adsorption theory of emulsification?", a:"Finely divided solids that are wetted to some degree by both oil and water act as emulsifying agents, forming a particulate film around dispersed droplets to prevent coalescence."},
+      {q:"What determines whether a solid particle forms an o/w or w/o emulsion?", a:"Powders that are wetted preferentially by water form o/w emulsions; those more easily wetted by oil form w/o emulsions."},
+      {q:"If 1cm³ of mineral oil is dispersed into globules with diameter 0.01µm, what is the surface area?", a:"Using Sv = 6/Dvs = 6/10⁻⁶ = 6 × 10⁶ cm² = 600 m²."},
+      {q:"What is the work input required to create an emulsion with interfacial tension 57 dyne/cm and area 6×10⁶ cm²?", a:"W = 57 erg/cm² × 6×10⁶ cm² = 34×10⁷ ergs = 34 Joules."},
+      {q:"What are the two factors considered when reviewing a theory of emulsification?", a:"1. The stability of the product; 2. The type of emulsion formed."},
+    ]
+  },
+  // ========= SECTION 2: EMULSIFYING AGENTS =========
+  {
+    id:'emulsifying-agents',
+    color:'#E3B24D',
+    num:'02',
+    title:'Emulsifying Agents — Classification & Properties',
+    desc:'Definition of emulsifying agents, criteria for selection, classification by origin (natural, semi-synthetic, synthetic), by charge (anionic, cationic, non-ionic, amphoteric, zwitterionic), and finely divided solids.',
+    short:[
+      {q:"What is an emulsifying agent (emulsifier)?", a:"A substance added to an emulsion to prevent the coalescence of the globules of the dispersed phase by reducing the interfacial tension between the two phases and forming a stable interfacial film."},
+      {q:"What is the function of an emulsifying agent?", a:"To maintain the dispersion state of the emulsion for an extended period after cessation of agitation, imparting kinetic stability by inhibiting or delaying coalescence and Ostwald ripening."},
+      {q:"What are the criteria for selecting an ideal emulsifying agent?", a:"1. Reduce interfacial tension; 2. Physically and chemically stable, inert, and compatible; 3. Non-irritant and non-toxic at used concentrations; 4. Organoleptically inert (no colour, odour, or taste)."},
+      {q:"What are natural emulsifying agents?", a:"Emulsifiers obtained from plant, animal, or microbial sources. Examples: acacia, tragacanth (plant); gelatin, egg yolk, wool fat (animal); microbial sources."},
+      {q:"What are plant-derived natural emulsifying agents?", a:"Carbohydrates including gums and mucilaginous substances — tragacanth, acacia, agar, pectin, and starch. They exhibit considerable variation in emulsifying properties."},
+      {q:"What are animal-derived natural emulsifying agents?", a:"Gelatin, egg yolk, and wool fat (anhydrous lanolin)."},
+      {q:"What are semi-synthetic emulsifiers?", a:"Cellulose derivatives like sodium carboxymethyl cellulose, hydroxypropyl cellulose, and methyl cellulose. They act primarily by increasing viscosity and form o/w emulsions."},
+      {q:"What are synthetic surfactants as emulsifiers?", a:"Surface-active agents classified as ionic (anionic or cationic) or non-ionic. Most are mixtures of long-chain homologues with 12-18 carbon atoms and a hydrophilic head group."},
+      {q:"What are finely divided solids as emulsifiers?", a:"Colloidal clays like bentonite and veegum that form particulate films around dispersed droplets, producing emulsions that are coarse-grained but stable."},
+      {q:"What is an anionic emulsifier?", a:"A surfactant that dissociates at high pH to form a long-chain anion with surface activity. Examples: alkali soaps, alkyl sulphates, alkyl sulphonates."},
+      {q:"What is the pH stability of anionic emulsifiers?", a:"Emulsifying properties are lost and emulsions are unstable in acid conditions and in the presence of cationic materials."},
+      {q:"What is a cationic emulsifier?", a:"A surfactant that dissociates at low pH to form a long-chain surface-active cation. Examples: quaternary ammonium compounds like cetrimide and benzalkonium chloride."},
+      {q:"What is the pH stability of cationic emulsifiers?", a:"Emulsions are unstable at high pH and in the presence of anionic materials, including anionic surfactants and polymers."},
+      {q:"What are the advantages of cationic emulsifiers?", a:"They have good antibacterial activity (e.g., cetrimide, benzalkonium chloride)."},
+      {q:"What is a non-ionic emulsifier?", a:"A surfactant that does not ionize to any extent. They are less toxic and irritant than ionic surfactants and are more resistant to changes in pH and electrolytes."},
+      {q:"What are examples of non-ionic emulsifiers?", a:"Polysorbates (Tween), sorbitan esters (Spans), glyceryl esters (glyceryl monostearate), propylene glycol monostearate, and macrogol esters."},
+      {q:"Why are non-ionic surfactants useful as emulsifiers?", a:"They are less toxic and irritant than ionic surfactants, and therefore a limited number (e.g., polysorbate 80; Tween 80) are used in parenteral and oral products."},
+      {q:"What is an amphoteric emulsifier?", a:"A surfactant whose ionization state may change depending on the solution pH. They may shift from cationic to zwitterionic to anionic as pH increases."},
+      {q:"What is a zwitterionic emulsifier?", a:"A subclass of amphoteric surfactants that possess both positive and negative charges simultaneously within the same molecule while remaining electrically neutral overall. Example: lecithin."},
+      {q:"What is the difference between amphoteric and zwitterionic surfactants?", a:"Amphoteric surfactants change ionization state with pH (cationic → zwitterionic → anionic). Zwitterionic surfactants have both positive and negative charges simultaneously, remaining neutral overall regardless of pH."},
+      {q:"What are anionic surfactants primarily used for?", a:"Primarily used for external preparations as they have an unpleasant taste and irritant action on the intestinal mucosa."},
+      {q:"What are cationic surfactants primarily used for?", a:"Mainly used in external preparations such as lotions and creams."},
+      {q:"What are non-ionic surfactants used for?", a:"Used for both internal (oral, parenteral) and external use due to lower toxicity and irritancy."},
+    ]
+  },
+  // ========= SECTION 3: MIXED EMULSIFIERS & HLB CONCEPT =========
+  {
+    id:'mixed-hlb',
+    color:'#4FD189',
+    num:'03',
+    title:'Mixed Emulsifiers & HLB Concept',
+    desc:'Mixed emulsifier systems, types and advantages, HLB concept, scale, RHLB calculations, surfactant blend calculations, and the Qs formula.',
+    short:[
+      {q:"What are mixed emulsifiers?", a:"Combinations of two or more emulsifying agents used together to provide superior emulsion stability compared with a single emulsifier."},
+      {q:"What are the advantages of mixed emulsifiers?", a:"Stronger interfacial film formation, combined stabilization mechanisms (electrostatic and steric), and the ability to achieve the required HLB value of the oil phase."},
+      {q:"What are the four types of mixed emulsifier systems?", a:"1. Anionic + Non-ionic (e.g., sodium lauryl sulfate + polysorbate 80); 2. Hydrophilic + Lipophilic (e.g., Tween 80 + Span 80); 3. Synthetic + Natural (e.g., Acacia + Tween 80); 4. Surfactant + Hydrophilic colloid (e.g., Tween 80 + Acacia)."},
+      {q:"What is the advantage of anionic + non-ionic mixed systems?", a:"Strong electrostatic repulsion from the anionic surfactant combined with steric stabilization from the non-ionic surfactant, providing excellent emulsion stability."},
+      {q:"What is the advantage of hydrophilic + lipophilic mixed systems?", a:"The combination provides the required HLB for the oil phase and forms a stronger interfacial film than either surfactant alone."},
+      {q:"What is the advantage of surfactant + hydrophilic colloid mixed systems?", a:"The surfactant reduces interfacial tension while the hydrocolloid increases viscosity and forms a secondary protective film."},
+      {q:"What is the HLB (Hydrophilic-Lipophilic Balance) concept?", a:"A numerical scale (0-20) that expresses the size and strength of the polar portion relative to the nonpolar portion of a surfactant molecule. Low HLB (0-6) indicates lipophilic (oil-soluble), high HLB (8-18) indicates hydrophilic (water-soluble)."},
+      {q:"What is the HLB of a very lipophilic surfactant?", a:"Low HLB value, typically 0-6 (e.g., Span 80 has HLB 4.3)."},
+      {q:"What is the HLB of a very hydrophilic surfactant?", a:"High HLB value, typically 8-18. Ionic surfactants can have HLB values >20, approaching 50 (e.g., sodium lauryl sulfate has HLB 40)."},
+      {q:"Who devised the HLB scale?", a:"Griffin devised the arbitrary scale to serve as a measure of HLB of surface active agents."},
+      {q:"What is the formula for calculating HLB of a polyhydric alcohol fatty acid ester?", a:"HLB = 20(1 - S/A), where S is the saponification number of the ester and A is the acid number of the fatty acid."},
+      {q:"Calculate the HLB of Tween 20 if S=45.5 and A=276.", a:"HLB = 20(1 - 45.5/276) = 20(1 - 0.1649) = 20 × 0.8351 = 16.7."},
+      {q:"What is the required HLB (RHLB)?", a:"The specific HLB value required by the oil phase to form a stable emulsion of a particular type (o/w or w/o)."},
+      {q:"How is the overall RHLB of an emulsion calculated?", a:"Multiply the RHLB of each oil-like component by its weight fraction contribution to the oil phase, then sum all values."},
+      {q:"What is the formula for calculating the percentage of a surfactant with higher HLB in a blend?", a:"% Higher HLB = (RHLB - HLBlow) / (HLBhigh - HLBlow)."},
+      {q:"What is the formula for calculating the amount of surfactant mixture (Qs) for a W/O emulsion?", a:"Qs = [6(ρs/ρi)]/[10 - (0.5 × RHLB)] + [4Q/1000], where ρs is density of surfactant mixture, ρi is density of internal phase (water), Q is percent of dispersant (oil)."},
+      {q:"What is the formula for calculating Qs for an O/W emulsion?", a:"Qs = [6(ρs/ρi)]/[10 - (0.5 × RHLB)] + [4Q/1000], where ρs is density of surfactant mixture, ρi is density of internal phase (oil), Q is percent of dispersant (aqueous phase)."},
+      {q:"What are the RHLB values for paraffin wax for O/W and W/O emulsions?", a:"O/W: 10; W/O: 4."},
+      {q:"What are the RHLB values for beeswax for O/W and W/O emulsions?", a:"O/W: 9-11; W/O: 5."},
+      {q:"What are the RHLB values for mineral oil for O/W and W/O emulsions?", a:"O/W: 10-12; W/O: 5-6."},
+      {q:"What are the RHLB values for lanolin, anhydrous for O/W and W/O emulsions?", a:"O/W: 12-14; W/O: 8."},
+      {q:"What are the RHLB values for cetyl alcohol for O/W emulsion?", a:"O/W: 13-16."},
+      {q:"What are the RHLB values for stearyl alcohol for O/W emulsion?", a:"O/W: 15-16."},
+      {q:"What is the HLB value of Tween 80?", a:"15.0."},
+      {q:"What is the HLB value of Span 80?", a:"4.3."},
+      {q:"What is the HLB value of Tween 20?", a:"16.7."},
+      {q:"What is the HLB value of Span 20?", a:"8.6."},
+      {q:"What is the HLB value of glyceryl monostearate?", a:"3.8."},
+      {q:"What is the HLB value of sodium lauryl sulfate?", a:"40."},
+      {q:"What is the HLB value of triethanolamine oleate?", a:"11.1."},
+    ]
+  },
+  // ========= SECTION 4: EMULSION PREPARATION & STABILITY =========
+  {
+    id:'preparation-stability',
+    color:'#FF6B52',
+    num:'04',
+    title:'Emulsion Preparation Methods & Stability',
+    desc:'Trituration method (dry gum, wet gum), bottle method, mechanical equipment, Stokes law, creaming, flocculation, coalescence, cracking, phase inversion, and stability factors.',
+    short:[
+      {q:"What are the two main categories of methods used to prepare emulsions?", a:"Trituration method and Bottle method."},
+      {q:"What is the dry gum method of emulsion preparation?", a:"The oil is first triturated with gum with a small amount of water to form the primary emulsion. Trituration continues till a characteristic 'clicking' sound is heard and a thick white cream forms. The remaining water is then added."},
+      {q:"What is the wet gum method of emulsion preparation?", a:"Gum and water are triturated together first to form a mucilage. The required quantity of oil is then added gradually in small proportions with thorough trituration to form the primary emulsion. Remaining water is then added."},
+      {q:"What is the '4:2:1' formula for emulsion preparation?", a:"4 parts (volumes) of oil, 2 parts of water, and 1 part of gum."},
+      {q:"What is the bottle method of emulsion preparation?", a:"Employed for preparing emulsions containing volatile and other non-viscous oils. Oil or water is first shaken thoroughly with the calculated amount of gum. Once emulsified completely, the second liquid is added all at once and shaken vigorously."},
+      {q:"Why do volatile oils require a comparatively large quantity of gum for emulsification?", a:"Because volatile oils have a low viscosity compared to fixed oils."},
+      {q:"What mechanical equipment is used for emulsification?", a:"Mechanical stirrers (propeller type mixers, turbine mixers), homogenizers, colloid mills, and ultrasonifiers."},
+      {q:"What is a colloid mill and what is it used for?", a:"A mechanical device that passes the mixture through a narrow gap between a high-speed rotor and a stator, creating intense shearing forces that break down droplets to form emulsions."},
+      {q:"What is an ultrasonifier in emulsion preparation?", a:"A device that uses ultrasonic waves to create intense cavitation forces that break down droplets to form fine emulsions."},
+      {q:"In the dry gum method, what indicates that the primary emulsion has been formed?", a:"A characteristic 'clicking' sound and the formation of a thick white cream."},
+      {q:"What is Stokes' law and how is it used in emulsions?", a:"V = 2(ρp - ρf)gR²/9η, where V is terminal velocity. It predicts creaming/sedimentation rate in emulsions."},
+      {q:"What is the zero shear viscosity and why is it important in emulsion stability?", a:"The viscosity of the emulsion under incredibly low stresses. It is the most relevant value for Stokes' law calculations because stability conditions involve low stress situations."},
+      {q:"What is creaming in emulsions?", a:"The upward movement of dispersed globules to form a thick layer at the surface of the emulsion. It is reversible and can be re-dispersed by shaking."},
+      {q:"What is flocculation in emulsions?", a:"A reversible process where secondary interactions (van der Waals forces) maintain droplets at a defined distance of separation. Shaking can redisperse them."},
+      {q:"What is coalescence in emulsions?", a:"The merging of two or more droplets to form a larger droplet. It is irreversible and leads to cracking."},
+      {q:"What is cracking (breaking) in emulsions?", a:"The irreversible separation of two layers of disperse and continuous phase due to coalescence of disperse phase globules that cannot be redispersed by shaking."},
+      {q:"What is phase inversion in emulsions?", a:"The change of one type of emulsion into the other type — o/w changes to w/o or vice versa."},
+      {q:"What factors cause cracking in emulsions?", a:"Addition of emulsifying agent of opposite type, decomposition or precipitation of emulsifying agent, addition of common solvent, microorganisms, change in temperature, and creaming."},
+      {q:"What factors cause phase inversion in emulsions?", a:"Addition of an electrolyte, changing the phase-volume ratio, temperature change, and changing the emulsifying agent."},
+      {q:"How can creaming be minimized?", a:"By reducing the radius of globules, decreasing the difference in density between disperse and continuous phases, increasing the viscosity of the dispersion medium, and proper storage conditions."},
+      {q:"What is the minimum concentration of disperse phase recommended to minimize phase inversion?", a:"Keeping the concentration of disperse phase between 30% and 60%."},
+      {q:"What are the points to consider during formulation of emulsions?", a:"Stability of active ingredient and excipients, visual appearance, color, odor, viscosity, extrudability, loss of water and volatile components, emulsifier concentration, particle size distribution, pH, temperature of emulsification, method and rate of cooling, texture, microbial contamination, release/bioavailability, and phase distribution."},
+    ]
+  },
+  // ========= SECTION 5: OINTMENTS, CREAMS & PASTES =========
+  {
+    id:'ointments',
+    color:'#9B87F5',
+    num:'05',
+    title:'Ointments, Creams & Pastes',
+    desc:'Definitions, five types of ointment bases (oleaginous, absorption, w/o emulsion, o/w emulsion, water-soluble), preparation methods (fusion, trituration), incompatibilities (physical, microbiological, chemical).',
+    short:[
+      {q:"What is an ointment?", a:"A semisolid preparation intended for external application to the skin or mucous membranes, usually containing <20% water and volatiles and >50% hydrocarbons, waxes, or polyols as the vehicle."},
+      {q:"What is a cream?", a:"A semisolid dosage form containing one or more drug substances dissolved or dispersed in a suitable base, formulated as either water-in-oil (e.g., Cold Cream) or oil-in-water emulsions."},
+      {q:"What is a paste?", a:"A semisolid dosage form containing one or more drug substances intended for topical application. One class is made from a single-phase aqueous gel, while fatty pastes are thick, stiff ointments that do not flow at body temperature."},
+      {q:"What are the five types of ointment bases?", a:"1. Oleaginous bases, 2. Absorption bases, 3. Water-in-oil emulsion bases, 4. Oil-in-water emulsion bases, 5. Water-soluble or water-miscible bases."},
+      {q:"What is an oleaginous ointment base?", a:"A base consisting primarily of hydrocarbons (e.g., white petrolatum, yellow petrolatum, hard paraffin BP, beeswax BP). They are anhydrous, emollient, and occlusive, but not water-absorbent."},
+      {q:"What is an absorption ointment base?", a:"A base that can absorb water to form w/o emulsions. Examples include wool fat (lanolin) and hydrophilic petrolatum."},
+      {q:"What is a water-in-oil emulsion ointment base?", a:"A base that contains water dispersed in an oil phase (e.g., Cold Cream). They are emollient and can absorb additional water."},
+      {q:"What is an oil-in-water emulsion ointment base?", a:"A base that contains oil dispersed in an aqueous phase (e.g., Hydrophilic Ointment USP). They are water-washable, non-occlusive, and more cosmetically acceptable."},
+      {q:"What is a water-soluble or water-miscible ointment base?", a:"A base that is completely water-soluble and does not contain any oil phase (e.g., PEG bases). They are greaseless and easily washable."},
+      {q:"What are the two methods of preparing ointments?", a:"Fusion method and Trituration method."},
+      {q:"What is the fusion method of ointment preparation?", a:"Ingredients are melted together over a water bath before incorporating any other ingredients, then stirred to ensure homogeneity."},
+      {q:"What is the trituration method of ointment preparation?", a:"Finely-subdivided insoluble medicaments are evenly distributed by grinding with a small amount of the base using a spatula on an ointment slab, followed by dilution with gradual addition."},
+      {q:"In trituration, what sieve sizes are used for powders?", a:"#250, #180, #1291."},
+      {q:"What are the characteristics of a good ointment?", a:"Uniform throughout (no lumps), free from grittiness (insoluble powders finely subdivided), and stable."},
+      {q:"What is 'bleeding' in ointments?", a:"The separation of liquid ingredients from the ointment base, which can occur due to incompatibility or improper preparation."},
+      {q:"What is a humectant and why is it added to ointments?", a:"Glycerin or propylene glycol may be added as humectants to ointment bases containing water to retard evaporation of water and prevent drying out of the ointment base."},
+      {q:"What is the microbiological stability concern with ointments?", a:"Ointments that contain water are subject to microbial growth. All emulsions require an antimicrobial agent because the aqueous phase is favorable to microbial growth, especially when water is the external phase."},
+      {q:"What is the chemical stability concern with oil-in-water emulsion ointments?", a:"Traditional vanishing creams used stearate soap-type emulsifiers, which are sensitive to pH and multivalent ions. Some have been reformulated with nonionic surfactants for better compatibility."},
+      {q:"What is the chemical stability concern with water-in-oil emulsion ointments?", a:"Emulsion ointments with soap-type emulsifiers (like Cold Cream) are sensitive to acid ingredients such as salicylic acid or phenolic compounds. Bases with nonionic emulsifiers (like Eucerin) are more stable to acid ingredients."},
+      {q:"Why might extra preservative be needed in ointments?", a:"Some preservatives, such as parabens and benzoic acid, are highly lipophilic and may partition into the oil phase, leaving the water phase with insufficient preservative concentration."},
+      {q:"What are the physical stability concerns with ointments?", a:"'Bleeding' of liquid ingredients and phase separation can occur. Glycerin or propylene glycol may be added as humectants to prevent drying out."},
+    ]
+  },
+  // ========= SECTION 6: SUPPOSITORIES, PESSARIES & BOUGIES =========
+  {
+    id:'suppositories',
+    color:'#FF8C42',
+    num:'06',
+    title:'Suppositories, Pessaries & Bougies',
+    desc:'Definitions, types of bases (oleaginous, hydrophilic, emulsifying), cocoa butter properties, PEG bases, glycero-gelatin base, preparation methods, evaluation tests, and packaging.',
+    short:[
+      {q:"What is a suppository?", a:"A solid dosage form intended for insertion into the rectum, where it melts or dissolves to exert localized or systemic effect."},
+      {q:"What is a pessary?", a:"A solid dosage form intended for insertion into the vagina."},
+      {q:"What is a bougie?", a:"A solid dosage form intended for insertion into the urethra."},
+      {q:"What are the three main types of suppository bases?", a:"1. Oleaginous bases (e.g., cocoa butter, hydrogenated oils), 2. Hydrophilic bases (e.g., glycero-gelatin, soap-glycerin, polyethylene glycol), 3. Emulsifying bases (e.g., Witepsol, Massa estarinum)."},
+      {q:"What is cocoa butter and its source?", a:"Cocoa butter is fat obtained from the roasted seed of Theobroma cocoa. It is a triglyceride primarily of oleopalmitostearin and oleodistearine."},
+      {q:"What is the melting range of cocoa butter?", a:"30-35°C."},
+      {q:"What are the advantages of cocoa butter as a suppository base?", a:"Melts just below body temperature, maintains solidity at room temperature, readily liquefies on heating and solidifies on cooling."},
+      {q:"What are the disadvantages of cocoa butter as a suppository base?", a:"Exhibits marked polymorphism, rancidity, sticks to mould, leaks from body cavity, costly, immiscibility with body fluid, and chloral hydrate or lactic acid liquefy it."},
+      {q:"What is the glycero-gelatin base?", a:"A mixture of glycerin and water made stiff by the addition of gelatin. It is colourless, transparent, and soft to touch, melting at 30-35°C."},
+      {q:"What are the two types of gelatin bases and their uses?", a:"Type A (Pharmagel A) — acidic, used for acidic drugs. Type B (Pharmagel B) — alkaline, used for basic drugs."},
+      {q:"What are the advantages of glycero-gelatin base?", a:"Melts at body temperature, mixes with body fluid, not rancid, can be used with boric acid, chloral hydrate, bromides, iodides, etc."},
+      {q:"What are the disadvantages of glycero-gelatin base?", a:"Difficult to prepare and handle, chance of bacterial growth, hygroscopic, laxative in action, incompatible with tannic acid, gallic acid, ferric chloride."},
+      {q:"What are polyethylene glycols (PEGs) as suppository bases?", a:"Water-miscible bases composed of PEGs with molecular weight >1000 g/mol. PEG 1000 melts at 37-40°C, PEG 8000 melts at 60-63°C."},
+      {q:"What is the typical melting point of PEG suppository bases?", a:"42°C."},
+      {q:"What are the advantages of PEG suppository bases?", a:"Chemically stable, inert, non-irritant, do not allow bacterial growth, physical properties change with molecular weight, provide prolonged action, do not stick to mould."},
+      {q:"What are the disadvantages of PEG suppository bases?", a:"Hygroscopic, incompatibility with some drugs (tannins, phenol), good solvent properties leading to supersaturation."},
+      {q:"What are emulsifying bases for suppositories?", a:"Bases like Witepsol and Massa estarinum. They are mixtures of mono, di, and triglycerides of saturated fatty acids."},
+      {q:"What is Massa estarinum (Adeps solidus)?", a:"A white, brittle, almost odourless and tasteless solid with m.p. 33.5-35.5°C. It is a mixture of mono, di, and triglycerides of saturated fatty acids with formula C11H23COOH to C17H35COOH."},
+      {q:"What is Massuppol?", a:"It consists of glyceryl esters mainly of lauric acid to which small amount of glyceryl monostearate has been added to improve its water absorbing capacity."},
+      {q:"What are the advantages of emulsifying bases?", a:"Solidify rapidly, non-irritant, mould lubrication not required, overheating does not affect physical properties, can absorb large amounts of water, produce white, odourless, attractive suppositories, less liable to rancidity."},
+      {q:"What are the disadvantages of emulsifying bases?", a:"Should not be cooled rapidly in a refrigerator (become brittle), not very viscous on melting (medicaments settle down rapidly)."},
+      {q:"What are the methods of preparing suppositories?", a:"Hand rolling, Machine moulding, Fusion method, Cold compression."},
+      {q:"What is the fusion method of suppository preparation?", a:"Melting the suppository base, dispersing or dissolving the drug in the melted base, pouring the mixture into a suppository mold, allowing the melt to congeal, and removing the formed suppositories."},
+      {q:"How should cocoa butter suppositories be stored?", a:"Preferably stored in a refrigerator."},
+      {q:"How should PEG suppositories be stored?", a:"Stored at usual room temperature without the requirement of refrigeration."},
+      {q:"What is the uniformity of weight test for suppositories?", a:"20 suppositories are weighed; average weight calculated. No suppository should deviate from the average by more than 5%, except two should not deviate by more than 7.5%."},
+      {q:"What is the melting range test for suppositories?", a:"A measure of the time it takes for the entire suppository to melt when immersed in a constant-temperature (37°C) water bath, using a USP Tablet Disintegration Apparatus."},
+      {q:"What is the micro melting range test?", a:"The melting range measured in capillary tubes for the fat base only."},
+      {q:"What is the liquefaction or softening time test (Krowcynski method)?", a:"A test using a U-tube partially submerged in a constant-temperature water bath. A glass rod is placed on top of the suppository, and the time for the rod to pass through to the constriction is recorded as the softening time."},
+      {q:"How is in vitro drug release from suppositories tested?", a:"Using the same melting range apparatus, aliquots of the water are measured for drug content at various intervals within the melting period. Samples can be sealed in dialysis tubing, natural membranes, or using flow cell apparatus with cotton or wire screening."},
+      {q:"What is the appearance test for suppositories?", a:"When cut longitudinally and examined with the naked eye, the internal and external surfaces should be uniform in appearance, indicating satisfactory subdivision and dispersion of suspended material."},
+      {q:"What surface defects are checked in suppository evaluation?", a:"Absence of fissuring, pitting, exudation, and migration of active ingredients."},
+    ]
+  }
+];
+
+/* ============================================================
+   ICONS
+   ============================================================ */
+const ICO = {
+  prev:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>',
+  next:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>',
+  flip:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg>',
+  card:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="15" height="11" rx="2"/><path d="M7 3h11a2 2 0 0 1 2 2v11"/></svg>',
+  list:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l2 2 4-4"/><path d="M9 14l2 2 4-4"/><line x1="17" y1="7" x2="21" y2="7"/><line x1="17" y1="15" x2="21" y2="15"/></svg>',
+};
+
+/* ============================================================
+   STATE + PERSISTENCE
+   ============================================================ */
+const STORAGE_KEY = "pct323_flashcards_v2";
+
+let storageAvailable = true;
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){ storageAvailable = false; }
+  return { name:null, progress:{} };
+}
+function saveState(){
+  if(!storageAvailable) return;
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+  catch(e){ storageAvailable = false; }
+}
+
+let state = loadState();
+let route = state.name ? {screen:'home'} : {screen:'gate'};
+let activeQuiz = null;
+let cardFlipLocal = false;
+
+function ensureProgress(sectionId){
+  const section = SECTIONS.find(s=>s.id===sectionId);
+  if(!state.progress[sectionId]) state.progress[sectionId] = {};
+  const p = state.progress[sectionId];
+  if(!p.short || !Array.isArray(p.short.revealed) || p.short.revealed.length !== section.short.length){
+    p.short = {idx:0, revealed:new Array(section.short.length).fill(false), status:'new'};
+  }
+  return p;
+}
+
+/* ============================================================
+   RENDER ENGINE
+   ============================================================ */
+const app = document.getElementById('app');
+
+function render(){
+  try{
+    app.innerHTML = '';
+    if(route.screen === 'gate') return renderGate();
+    renderTopbar();
+    if(route.screen === 'home') return renderHome();
+    if(route.screen === 'quiz') return renderQuiz();
+    if(route.screen === 'results') return renderResults();
+  }catch(err){
+    app.innerHTML = `<div class="wrap" style="padding-top:60px;text-align:center;">
+      <p style="color:var(--text-1);font-size:0.85rem;">Something went wrong loading this screen.</p>
+      <button class="btn btn-primary btn-sm" style="margin-top:14px;" onclick="route={screen:'home'};render();">Go to topics</button>
+    </div>`;
+    console.error(err);
+  }
+}
+
+function renderTopbar(){
+  const bar = document.createElement('div');
+  bar.className = 'topbar wrap';
+  bar.innerHTML = `
+    <div class="brand">
+      <span class="brand-mono">PCT 323</span>
+      <span class="brand-word">PharmTech<span class="dot">.</span></span>
+    </div>
+    <div class="user-chip"><span class="dot-ico"></span> <strong>${escapeHtml(state.name)}</strong></div>
+  `;
+  app.appendChild(bar);
+}
+
+function renderGate(){
+  const el = document.createElement('div');
+  el.className = 'gate';
+  el.innerHTML = `
+    <div class="gate-eyebrow">PCT 323 · Emulsions, Ointments & Suppositories</div>
+    <h1>Master <em>disperse</em><br/>systems.</h1>
+    <p class="lead">Emulsions · Emulsifying agents · HLB calculations · Ointment bases · Suppository evaluation — fully covered with 170+ flashcards.</p>
+    <form class="name-form" id="nameForm" autocomplete="off">
+      <input type="text" id="nameInput" placeholder="Enter your name to begin" required maxlength="40"/>
+      <button type="submit" class="btn btn-primary">Start studying →</button>
+    </form>
+    <p class="gate-hint">Your progress saves automatically on this device — close the tab any time.</p>
+  `;
+  app.appendChild(el);
+  const form = document.getElementById('nameForm');
+  form.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const val = document.getElementById('nameInput').value.trim();
+    if(!val) return;
+    state.name = val;
+    saveState();
+    route = {screen:'home'};
+    render();
+  });
+  document.getElementById('nameInput').focus();
+}
+
+function renderHome(){
+  const wrap = document.createElement('div');
+  wrap.className = 'wrap';
+
+  let totalDone=0, totalItems=0;
+  SECTIONS.forEach(s=>{
+    const p = ensureProgress(s.id);
+    totalItems += s.short.length;
+    totalDone += p.short.revealed.filter(Boolean).length;
+  });
+  const pct = totalItems ? Math.round((totalDone/totalItems)*100) : 0;
+
+  wrap.innerHTML = `
+    <div class="home-head">
+      <div class="eyebrow">Welcome back, ${escapeHtml(state.name.split(' ')[0])}</div>
+      <h1>Choose a topic to study</h1>
+      <p>Each section contains theory and application flashcards covering all lecture content.</p>
+      <div class="overall-bar"><div class="overall-bar-fill" style="width:${pct}%"></div></div>
+      <div class="overall-label">${pct}% OF ALL CARDS REVIEWED · ${totalDone}/${totalItems}</div>
+    </div>
+    <div class="topic-list" id="topicList"></div>
+  `;
+  app.appendChild(wrap);
+
+  const list = document.getElementById('topicList');
+  SECTIONS.forEach((s, si)=>{
+    const p = ensureProgress(s.id);
+    const card = document.createElement('div');
+    card.className = 'topic-card';
+    card.style.setProperty('--tcolor', s.color);
+    card.style.animationDelay = (si*0.06)+'s';
+    const done = p.short.revealed.filter(Boolean).length;
+    const total = s.short.length;
+    const badge = p.short.status==='done' ? `<span class="mode-badge badge-done">Done</span>`
+          : done>0 ? `<span class="mode-badge badge-progress">Resume</span>`
+          : `<span class="mode-badge badge-new">Start</span>`;
+    card.innerHTML = `
+      <div class="topic-top">
+        <div>
+          <div class="topic-num">SECTION ${s.num}</div>
+          <div class="topic-title">${s.title}</div>
+          <div class="topic-desc">${s.desc}</div>
+        </div>
+      </div>
+      <div class="mode-row">
+        <button class="mode-btn" data-section="${s.id}">
+          <span class="mtop"><span class="mlabel">${ICO.card} Flashcards</span>${badge}</span>
+          <span class="mprog">${done}/${total} reviewed</span>
+        </button>
+      </div>
+    `;
+    list.appendChild(card);
+  });
+
+  list.querySelectorAll('.mode-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      startOrResume(btn.dataset.section);
+    });
+  });
+}
+
+function startOrResume(sectionId){
+  const p = ensureProgress(sectionId);
+  const section = SECTIONS.find(s=>s.id===sectionId);
+  const m = p.short;
+  if(m.status === 'done'){
+    m.idx = 0; m.status = 'new';
+    m.revealed = new Array(section.short.length).fill(false);
+    saveState();
+  }
+  activeQuiz = {sectionId, idx:m.idx||0};
+  route = {screen:'quiz'};
+  render();
+}
+
+function renderQuiz(){
+  const section = SECTIONS.find(s=>s.id===activeQuiz.sectionId);
+  const items = section.short;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'wrap';
+  wrap.style.setProperty('--accent', section.color);
+
+  wrap.innerHTML = `
+    <div class="back-row"><button class="btn btn-ghost btn-sm" id="backHome">← All topics</button></div>
+    <div class="quiz-topbar">
+      <div class="quiz-meta">${section.title} · Flashcards</div>
+      <div class="quiz-counter mono" id="cardCounter"></div>
+    </div>
+    <div class="dot-row" id="dotRow"></div>
+    <div class="qcard-outer"><div class="qcard" id="qcard"></div></div>
+    <div class="quiz-nav">
+      <button class="nav-btn nav-prev" id="prevBtn">${ICO.prev}<span class="nb-label">Prev</span></button>
+      <button class="nav-btn nav-next" id="nextBtn"><span class="nb-label" id="nextLabel">Next</span>${ICO.next}</button>
+    </div>
+  `;
+  app.appendChild(wrap);
+
+  document.getElementById('backHome').addEventListener('click', ()=>{ route={screen:'home'}; render(); });
+  document.getElementById('prevBtn').addEventListener('click', goPrev);
+  document.getElementById('nextBtn').addEventListener('click', goNext);
+
+  renderCardContent(activeQuiz.idx, 'none');
+}
+
+function renderCardContent(idx, direction){
+  const section = SECTIONS.find(s=>s.id===activeQuiz.sectionId);
+  const items = section.short;
+  const item = items[idx];
+  const qcard = document.getElementById('qcard');
+
+  const build = ()=>{
+    qcard.innerHTML = shortCardHtml(item);
+    attachShortHandlers(section, idx);
+    updateCounter(idx, items.length);
+    updateDots(idx);
+    updateNavState(section, idx, items.length);
+  };
+
+  if(direction === 'none'){
+    build();
+    return;
+  }
+
+  const exitClass = direction === 'next' ? 'card-exit-left' : 'card-exit-right';
+  const enterClass = direction === 'next' ? 'card-enter-right' : 'card-enter-left';
+  qcard.classList.add(exitClass);
+  setTimeout(()=>{
+    qcard.classList.remove(exitClass);
+    qcard.classList.add(enterClass);
+    build();
+    requestAnimationFrame(()=>{
+      requestAnimationFrame(()=>{
+        qcard.classList.remove(enterClass);
+      });
+    });
+  }, 190);
+}
+
+function shortCardHtml(item){
+  return `
+    <div class="qkicker">Question</div>
+    <div class="flip-scene" id="flipScene">
+      <div class="flip-card" id="flipCard">
+        <div class="flip-face front">
+          <div class="qtext">${escapeHtml(item.q)}</div>
+          <div class="flip-hint">${ICO.flip}</div>
+        </div>
+        <div class="flip-face back">
+          <div class="flip-answer-text">${escapeHtml(item.a)}</div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function attachShortHandlers(section, idx){
+  cardFlipLocal = false;
+  const scene = document.getElementById('flipScene');
+  const cardEl = document.getElementById('flipCard');
+  scene.addEventListener('click', ()=>{
+    cardFlipLocal = !cardFlipLocal;
+    cardEl.classList.toggle('flipped', cardFlipLocal);
+    if(cardFlipLocal){
+      const p = ensureProgress(section.id).short;
+      if(!p.revealed[idx]){
+        p.revealed[idx] = true;
+        if(p.status === 'new') p.status = 'progress';
+        saveState();
+        updateDots(idx);
+      }
+    }
+  });
+}
+
+function updateCounter(idx, total){
+  const el = document.getElementById('cardCounter');
+  if(el) el.textContent = `${idx+1} / ${total}`;
+}
+
+function buildDotsHtml(section, mode, idx){
+  const items = section[mode];
+  const p = ensureProgress(section.id)[mode];
+  return items.map((_,i)=>{
+    const filled = p.revealed[i];
+    let cls = 'pip' + (filled?' filled':'') + (i===idx?' current':'');
+    return `<span class="${cls}"></span>`;
+  }).join('');
+}
+function updateDots(idx){
+  const section = SECTIONS.find(s=>s.id===activeQuiz.sectionId);
+  const el = document.getElementById('dotRow');
+  if(el) el.innerHTML = buildDotsHtml(section, 'short', idx);
+}
+
+function updateNavState(section, idx, total){
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const nextLabel = document.getElementById('nextLabel');
+  if(!prevBtn || !nextBtn) return;
+  prevBtn.disabled = idx === 0;
+  const isLast = idx === total-1;
+  nextBtn.disabled = false;
+  nextLabel.textContent = isLast ? 'Finish' : 'Next';
+}
+
+function goNext(){
+  const section = SECTIONS.find(s=>s.id===activeQuiz.sectionId);
+  const items = section.short;
+  const idx = activeQuiz.idx;
+  const isLast = idx === items.length-1;
+  const p = ensureProgress(section.id).short;
+
+  if(isLast){
+    p.status = 'done';
+    saveState();
+    route = {screen:'results'};
+    render();
+    return;
+  }
+  activeQuiz.idx += 1;
+  p.idx = activeQuiz.idx;
+  if(p.status === 'new') p.status = 'progress';
+  saveState();
+  renderCardContent(activeQuiz.idx, 'next');
+}
+
+function goPrev(){
+  if(activeQuiz.idx === 0) return;
+  activeQuiz.idx -= 1;
+  const section = SECTIONS.find(s=>s.id===activeQuiz.sectionId);
+  const p = ensureProgress(section.id).short;
+  p.idx = activeQuiz.idx;
+  saveState();
+  renderCardContent(activeQuiz.idx, 'prev');
+}
+
+document.addEventListener('keydown', (e)=>{
+  if(!route || route.screen !== 'quiz') return;
+  if(e.key === 'ArrowRight'){
+    const nb = document.getElementById('nextBtn');
+    if(nb && !nb.disabled) goNext();
+  } else if(e.key === 'ArrowLeft'){
+    const pb = document.getElementById('prevBtn');
+    if(pb && !pb.disabled) goPrev();
+  } else if((e.key === ' ' || e.key === 'Enter') && activeQuiz){
+    const scene = document.getElementById('flipScene');
+    if(scene){ e.preventDefault(); scene.click(); }
+  }
+});
+
+function renderResults(){
+  const section = SECTIONS.find(s=>s.id===activeQuiz.sectionId);
+  const items = section.short;
+  const p = ensureProgress(section.id).short;
+
+  const reviewed = p.revealed.filter(Boolean).length;
+  const pct = Math.round((reviewed/items.length)*100);
+  const sub = `${reviewed} of ${items.length} cards reviewed`;
+  const verdict = pct>=80 ? 'Excellent work' : pct>=50 ? 'Good progress' : 'Keep practicing';
+
+  const wrap = document.createElement('div');
+  wrap.className = 'wrap';
+  wrap.innerHTML = `
+    <div class="results-card">
+      <div class="results-eyebrow">${section.title} · Flashcards complete</div>
+      <div class="score-ring-wrap" id="scoreRing">
+        <div class="score-ring-inner">
+          <div class="score-pct" id="scorePct">0%</div>
+          <div class="score-pct-label">Reviewed</div>
+        </div>
+      </div>
+      <div class="results-verdict">${verdict}</div>
+      <div class="results-sub">${sub}</div>
+      <div class="results-actions">
+        <button class="btn btn-primary btn-sm" id="retryBtn">Study again</button>
+        <button class="btn btn-ghost btn-sm" id="homeBtn">Back to all topics</button>
+      </div>
+    </div>
+  `;
+  app.appendChild(wrap);
+
+  animateScoreRing(document.getElementById('scoreRing'), document.getElementById('scorePct'), pct);
+
+  document.getElementById('retryBtn').addEventListener('click', ()=>{
+    startOrResume(activeQuiz.sectionId);
+  });
+  document.getElementById('homeBtn').addEventListener('click', ()=>{
+    route = {screen:'home'};
+    render();
+  });
+}
+
+function animateScoreRing(ringEl, textEl, pctFinal){
+  if(!ringEl || !textEl) return;
+  const dur = 900;
+  let start = null;
+  function step(ts){
+    if(!start) start = ts;
+    const t = Math.min((ts-start)/dur, 1);
+    const eased = 1 - Math.pow(1-t, 3);
+    const val = Math.round(eased*pctFinal);
+    ringEl.style.background = `conic-gradient(var(--gold-dim) ${val}%, rgba(11,18,32,0.08) 0)`;
+    textEl.textContent = val + '%';
+    if(t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+render();
+</script>
+</body>
+</html>
